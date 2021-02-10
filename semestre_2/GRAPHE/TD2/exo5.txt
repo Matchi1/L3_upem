@@ -1,0 +1,50 @@
+___________________________________________________________________
+
+Algorithme VerificationArbre(G, T, s)
+
+a_traiter <- file();
+a_traiter_arbre <- file();
+a_traiter.enfiler(s);
+a_traiter_arbre.enfiler(s);
+déjà_visité <- tableau(G.nombre_sommets(), FAUX);
+déjà_visité_arbre <- tableau(T.nombre_sommets(), FAUX);
+
+Tant que a_traiter.pas_vide() ou a_traiter_arbre.pas_vide() faire
+	sommet <- a_traiter.défiler();
+
+	Si -déjà_visité[sommet] alors
+		sommet1 <- a_traiter_arbre.défiler();
+		Si sommet != sommet1 alors
+			renvoyer FAUX;
+		ordonne(sommet.voisins())
+		ordonne(sommet1.voisins())
+		Pour chaque voisin dans sommet.voisins() faire
+			Si -déjà_visité[voisin] alors
+				a_traiter.enfiler(voisin);
+		Pour chaque voisin dans sommet1.voisins() faire
+			Si -déjà_visité_arbre[voisin] alors
+				a_traiter_arbre.enfiler(voisin);
+renvoyer VRAI
+
+___________________________________________________________________
+
+___________________________________________________________________
+
+Algorithme VerificationOrdre(G, L)
+
+a_traiter <- file();
+a_traiter.enfiler(L.TeteFile());
+déjà_visité <- tableau(G.nombre_sommets(), FAUX);
+
+Tant que a_traiter.pas_vide() faire
+	sommet <- a_traiter.défiler();
+	Si -déjà_visité[sommet] alors
+		sommet1 <- L.défiler();
+		Si sommet != sommet1 alors
+			renvoyer FAUX;
+		Pour chaque voisin dans sommet.voisins() faire
+			Si -déjà_visité[voisin] alors
+				déjà_visité.enfiler(voisin);
+renvoyer VRAI
+		
+___________________________________________________________________

@@ -1,0 +1,16 @@
+Compteur:
+
+mov rcx, 0
+loop:
+cmp rax, rbx
+je same
+	inc rax
+	inc rcx
+	jmp loop
+
+same:
+(...)
+
+message1: db "file"
+
+message1 + 2 = 'l' (calcul d'adresse)

@@ -1,0 +1,21 @@
+EXERCICE 3
+
+1/ Voir Tl0.dot et Tp0.dot
+
+2/ a/ Pour n > 0 : 
+	- Tl0 est de la forme étoile (un noeud qui possède (n-1) arêtes et les
+	  autres avec exactement 1 seul arêtes)
+	- Tp0 est de la forme linéaire (une ligne)
+
+3/ 
+
+	a/ On sait qu'un arbre est un graphe sans cycle contenant un unique entre
+	chaque paire de sommet.
+	Donc on peut en déduire que pour chaque sommet v, Tlv = Tlp
+
+	b/ Si G n'est pas connexe et s'il existe un sommet v pour lequel Tlv != Tpv
+	alors G n'est pas un arbre.
+
+	c/ Si Tlv != Tpv alors il existe plusieurs de v vers u, donc G n'est pas
+	un arbre. donc contraposé vrai.
+	On peut donc en déduire l'implication précédente.

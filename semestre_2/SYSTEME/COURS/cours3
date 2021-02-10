@@ -1,0 +1,55 @@
+5 règles pour un support de masse :
+1/ lire
+2/ écrire
+3/ durée
+4/ taille
+5/ entretien
+
+partition = dépend de la table des partitions
+
+première piste du premier cylindre du disque dur : description de la table des partitions (au démarrage).
+
+mémoire morte = read only. (ROM)
+avantages : pas de dépendance de disque, donc rapide à démarrer. pas d'entretien. (ex : atari 512 ST)
+désavantages : pas de mis à jour.
+mémoire flash = mémoire flash que l'on arrive à mettre à jour.
+
+où est l'os (PC) : hdd / sdd.
+
+Avantages de mettre l'os dans le disk :
+	facile à mettre à jour.
+
+Désavantages de mettre l'os dans le disk :
+	moins sécurisé
+	moins fiable
+
+pourquoi ranger l'OS sur le disque dur est assez complexe, dans l'idée ?
+	il faut avoir le système d'exploitation pour démarrer le système d'exploitation
+	dépendance cyclique
+
+BIOS -> dans la mémoire morte -> PC
+bloc 0 -> MBR (séquence de boot)
+bloc 0 MBR : séquence -> vas sur le bloc XXXX tu trouveas ton os
+
+Raspberri PI :
+	BIOS -> envoie de l'os vers la carte graphique
+	-> vers les autres composantes du PC 
+
+Bitmap : carte qui s'occupe de la gestion d'occupation.
+		(une zone mémoire est occupé ou non)
+
+sur 16 blocs, on prend 1 bloc pour gérer les 15 autres.
+100000000000000
+100000000000001
+			  ^- occupé
+
+inode -> compteur de lien
+
+RAID -> plus de fiable et facile d'avoir plusieurs disk moins chère
+		plutôt que d'avoir un seul disk chère.
+		plusieurs copie de fichiers dans les différents disk
+		fiable et pérennise les données
+
+
+open("toto.doc" , O_WRONLY | O_TRUNC | O_CREAT); -> il lui manque un argument (format) donc 
+ce dernier argument dépendra juste de la prochaine instruction.

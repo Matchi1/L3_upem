@@ -1,0 +1,5 @@
+On souhaite modéliser les nuages de données par un modèle (une droite, une courbe..)
+
+features : ce qui a agit sur le modèle, par exemple si un étudiant à suivis un cours ou pas.
+labels : ce qui est obtenue à partir des features.
+clustering : faire des paquets de features. (faire un paquet de personne qui ont les mêmes centres d'intérêts par exemple)

@@ -1,0 +1,31 @@
+EXERCICE 4
+
+1/ On pourrait utiliser une liste pour stocker les sommets déjà visités ou une
+matrice.
+2/ 
+
+______________________________________________________
+
+parcours_profondeur_simple(G, Départ):
+
+résultat <- pile();
+a_traiter <- pile();
+a_traiter.empiler(Départ);
+
+tant que a_traiter.pas_vide() faire
+	sommet = a_traiter.dépiler();
+	résultat.empiler(sommet);
+	Pour chaque v appartenant renverser(G.voisins(sommet)) faire
+		si -résultat.contient(v) alors a_traiter.empiler(v);
+
+renvoie résultat;
+
+______________________________________________________
+
+3/ 
+
+4/
+
+5/ le pseudocode est correct (pas de problème de syntaxe).
+Le problème est que dans la pile résultat peut avoir plusieurs
+sommets identiques.

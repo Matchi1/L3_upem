@@ -1,0 +1,17 @@
+EXERCICE 1:
+
+1/ Voir arbre1_exo.png et arbre2_exo.png
+
+2/ Ces arbres ne sont pas uniques
+
+3/ On suppose que l'arbre T est de poid minimale
+mais il ne contient pas d'arête e de poid minimale.
+T U e \ f un arbre T' avec f une arête.
+on a w(e) < w(f), donc w(T') = w(T) + w(e) - w(f)
+							 < w(T)
+c'est une contradiction, donc la propriété est vrai
+
+4/ Si T contient au moins une arête de G de poids minimale, alors
+T est de poids minimale
+
+5/ faux, void arbre3_exo.png 

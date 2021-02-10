@@ -1,0 +1,40 @@
+EXERCICE 2
+
+1/ On reprend l'algorithme de parcours en largeur et on l'utilise
+dans l'algorithme ComposanteConnxes :
+
+Pour le parcours en Largeur : 
+_________________________________________________________
+
+ComposanteConnexes(G):
+
+resultat <- liste();
+deja_visites <- tableau(G.nombre_sommets, FAUX);
+
+Pour chaque sommet dans G.sommets() faire
+	si -deja_visites[sommets] alors
+		resultat.ajouter_en_fin(ParoursLargeurIteratif(G, sommet,
+		deja_visites));
+
+renvoie resultat;
+
+_________________________________________________________
+
+
+Pour le parcours en Profondeur : 
+
+_________________________________________________________
+
+ComposanteConnexes(G):
+
+resultat <- liste();
+deja_visites <- tableau(G.nombre_sommets, FAUX);
+
+Pour chaque sommet dans G.sommets() faire
+	si -deja_visites[sommets] alors
+		resultat.ajouter_en_fin(ParcoursProfondeurIteratif(G, sommet,
+		deja_visites));
+
+renvoie resultat;
+
+_________________________________________________________

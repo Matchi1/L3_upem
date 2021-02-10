@@ -1,0 +1,28 @@
+EXERCICE 2
+
+1/ 
+
+_______________________________________________
+
+ArbreCouvrantPoidsMaximale(G)
+
+G_inv <- inverse_poids(G) (poids -> -poids);
+renvoyer ACPM(G_inv);
+_______________________________________________
+
+_______________________________________________
+
+inverse_poids(G)
+
+aretes <- G.aretes();
+TODO
+
+pour chaque tuple t de aretes faire
+	t.poids <- -t.poids
+_______________________________________________
+
+
+2/
+
+3/ Prim(G) -> Trier (T) -> O(n log n)
+Prim(G) >= Omega(n log n)
