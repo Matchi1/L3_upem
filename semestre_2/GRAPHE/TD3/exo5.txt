@@ -1,0 +1,13 @@
+EXERCICE 5
+
+P1 Si T est un arbre couvrant de G, alors il contient toutes les arêtes
+utiles.
+
+On est obliger de passer par ces arêtes utiles pour passer d'un des deux
+sommets vers l'autre.
+
+P2 Si T est un arbre couvrant de G de poids minimal, alors il ne possède
+aucune arêtes dangeureuse.
+
+une arête dangeureuse ne sera jamais sûre car elle possède le poids maximale
+dans le cycle

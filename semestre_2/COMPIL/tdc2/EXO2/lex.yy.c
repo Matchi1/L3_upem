@@ -458,7 +458,7 @@ char *yytext;
 #line 2 "decl-var.lex"
 /* decl-var.lex */
 #include "string.h"
-#include "decl-var.h"
+#include "decl-var.tab.h"
 int lineno=1;
 #line 464 "lex.yy.c"
 #define YY_NO_INPUT 1
@@ -767,7 +767,7 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 15 "decl-var.lex"
-{ strncpy(yylval,yytext,MAXNAME); return IDENT; }
+{ strncpy(yylval.name,yytext,MAXNAME); return IDENT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP

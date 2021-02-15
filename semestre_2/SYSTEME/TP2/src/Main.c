@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/sysmacros.h>
-#include <dirent.h>
-#include <time.h>
-#include <pwd.h>
 #include <unistd.h>
-#include <grp.h>
 #include "../include/Option.h"
 #include "../include/Display.h"
 #include "../include/Path.h"
@@ -20,20 +13,11 @@ Option opts;
  * @param sys_call the name of the systeme call
  * @param ret_val the return value of this systeme call
  */
-static void try(const char* sys_call, int ret_val){
+void try(const char* sys_call, int ret_val){
 	if(ret_val == -1){
 		perror(sys_call);
 		exit(EXIT_FAILURE);
 	}
-}
-
-/**
- * Compare 2 dirent structure.
- * @param d1 a dirent structure.
- * @param d2 a dirent structure.
- */
-int compar(const struct dirent **d1, const struct dirent **d2){
-	return strcmp((*d1)->d_name, (*d2)->d_name);
 }
 
 /**

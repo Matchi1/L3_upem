@@ -1,0 +1,8 @@
+open("toto") -> renvoie 3 (par exemple)
+close(1) -> filedescriptor 1 est libre
+dup(3) -> duplication du filedescriptor 3 (donc 3 et 1 pointe vers le même fichier, donc il devient aussi le fichier standard)
+donc printf écrit dans "toto"
+
+ordonnanceur de tâches
+
+fichier rc dans /etc -> différente phase de démarrage

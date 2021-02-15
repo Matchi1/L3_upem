@@ -1,7 +1,6 @@
 #ifndef __OPTION__
 #define __OPTION__
 
-#include <getopt.h>
 
 typedef struct {
 	int long_list, numeric, recursive;

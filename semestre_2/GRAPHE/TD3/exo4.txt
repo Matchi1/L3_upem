@@ -1,0 +1,8 @@
+EXERCICE 4
+
+Chaque arête à un poids différent dans le graphe.
+On peut donc en déduire qu'il n'y a aucun moyen de faire un 'choix' entre
+une arête avec une autre.
+
+on aura nécessairement une unique arête avec un poids
+minimal pour chaque sommet.

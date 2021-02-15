@@ -1,10 +1,36 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <grp.h>
+#include <time.h>
+#include <unistd.h>
 #include "../include/Display.h"
 #include "../include/Option.h"
-#include "../include/Path.h"
 
+/**
+ * This Option structure is set as a global
+ * variable because it is initialized once and can't be
+ * modified during the execution of the program.
+ */
 extern Option opts;
+
+/**
+ * A convenience function to make our code slightly more readable
+ * @param sys_call the name of the systeme call
+ * @param ret_val the return value of this systeme call
+ */
+extern void try(const char* sys_call, int ret_val);
+
+/**
+ * Compare 2 dirent structure.
+ * @param d1 a dirent structure.
+ * @param d2 a dirent structure.
+ */
+int compar(const struct dirent **d1, const struct dirent **d2){
+	return strcmp((*d1)->d_name, (*d2)->d_name);
+}
 
 /**
  * Verify if the specified file is a directory.
@@ -15,6 +41,83 @@ int isDirectory(const struct dirent* d){
 	if(d->d_type == 4)
 		return 1;
 	return 0;
+}
+
+/**
+ * Display the read permission of a file.
+ * @param s a pointor to a stat structure.
+ * @param mask the mask of the permission.
+ */
+void read_permission(struct stat* s, int mask){
+	if(s->st_mode & mask)
+		printf("r");
+	else
+		printf("-");
+}
+
+/**
+ * Display the write permission of a file.
+ * @param s a pointor to a stat structure.
+ * @param mask the mask of the permission.
+ */
+void write_permission(struct stat* s, int mask){
+	if(s->st_mode & mask)
+		printf("w");
+	else
+		printf("-");
+}
+
+/**
+ * Display the execute permission of a file.
+ * @param s a pointor to a stat structure.
+ * @param mask the mask of the permission.
+ */
+void exec_permission(struct stat* s, int mask){
+	if((s->st_mode & mask) != 0)
+		printf("x");
+	else
+		printf("-");
+}
+
+/**
+ * Display the owner's permission on a file.
+ * @param s a pointor to a stat structure.
+ */
+void owner_permission(struct stat* s){
+	read_permission(s, S_IRUSR);
+	write_permission(s, S_IWUSR);
+	exec_permission(s, S_IXUSR);
+}
+
+/**
+ * Display the group's permission on a file.
+ * @param s a pointor to a stat structure.
+ */
+void group_permission(struct stat* s){
+	read_permission(s, S_IRGRP);
+	write_permission(s, S_IWGRP);
+	exec_permission(s, S_IXGRP);
+}
+
+/**
+ * Display the other's permission on a file.
+ * @param s a pointor to a stat structure.
+ */
+void other_permission(struct stat* s){
+	read_permission(s, S_IROTH);
+	write_permission(s, S_IWOTH);
+	exec_permission(s, S_IXOTH);
+}
+
+/**
+ * Display all permissions of a file.
+ * @param s a pointor to a stat structure.
+ */
+void display_permission(struct stat* s){
+	owner_permission(s);
+	group_permission(s);
+	other_permission(s);
+	printf(" ");
 }
 
 /**
@@ -46,14 +149,14 @@ void display_filename(const char* filename){
  */
 int display_type(struct stat* s){
 	if(S_ISREG(s->st_mode))
-		printf("Type of file : f ");
+		printf("f ");
 	else if(S_ISDIR(s->st_mode))
-		printf("Type of file : d ");
+		printf("d ");
 	else if(S_ISLNK(s->st_mode)){
-		printf("Type of file : l ");
+		printf("l ");
 		return 1;
 	} else
-		printf("Type of file : ? ");
+		printf("? ");
 	return 0;
 }
 
@@ -62,7 +165,7 @@ int display_type(struct stat* s){
  * @param s a stat structure.
  */
 void display_username(struct stat* s){
-	struat passwd* pwd;
+	struct passwd* pwd;
 	struct group* gr;
 
 	pwd = getpwuid(s->st_uid);
@@ -77,6 +180,10 @@ void display_username(struct stat* s){
 	}
 }
 
+/**
+ * Display the date of modification of a file.
+ * @param s a pointor to a stat structure.
+ */
 void display_date(struct stat* s){
 	int i;
 	char* date = ctime(&(s->st_mtime));
@@ -94,6 +201,7 @@ void display_detail(struct stat* s, const char* filename){
 	int is_link;
 
 	is_link = display_type(s);
+	display_permission(s);
 	printf("%ld ", s->st_ino);
 	display_username(s);
 	printf("%5ld ", s->st_size);
@@ -132,11 +240,9 @@ void display_dir_aux(Path* p, struct dirent **namelist, int length){
 
 	printf("%s :\n", p->path);
 	for(i = 0; i < length; i++){
-		if(strcmp(namelist[i]->d_name, ".") != 0 && strcmp(namelist[i]->d_name, "..") != 0){
-			old_length = append(&p, namelist[i]->d_name);
-			display(&p, namelist[i]->d_name);
-			reset(&p, old_length);
-		}
+		old_length = append(p, namelist[i]->d_name);
+		display(p, namelist[i]->d_name);
+		reset(p, old_length);
 	}
 	printf("\n");
 }
@@ -156,11 +262,10 @@ void display_dir(const char* path_dir){
 
 	if(opts.recursive){
 		for(i = 0; i < length; i++){
-			if(isDirectory(namelist[i]) 
-				&& strcmp(namelist[i]->d_name, ".") != 0 
-				&& strcmp(namelist[i]->d_name, "..") != 0){
+			if(isDirectory(namelist[i]) && strcmp(namelist[i]->d_name, ".") != 0 
+					&& strcmp(namelist[i]->d_name, "..") != 0){
 				old_length = append(&p, namelist[i]->d_name);
-				display_dir(&p);
+				display_dir(p.path);
 				reset(&p, old_length);
 			}
 		}

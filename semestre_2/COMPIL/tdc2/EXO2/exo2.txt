@@ -1,0 +1,4 @@
+EXERCICE 2
+
+1/ Oui la grammaire attribuée est L-attribué 
+2/

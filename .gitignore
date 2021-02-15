@@ -8,3 +8,13 @@
 # Java program
 
 *.class
+
+# Compressed file
+
+*.zip
+*.tar
+*.tar.*
+
+# Flex file
+
+*.tab.*

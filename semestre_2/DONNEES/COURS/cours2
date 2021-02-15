@@ -1,0 +1,12 @@
+nb.arange(0, 20, 2).reshape(5,2)
+np.arange(0, 20, 2).reshape(5, 2)[::-1]
+np.arange(0, 20, 2).reshape(5, 2)[::-1, ::-1]
+np.arange(18, -2, -2).reshape(5, 2)
+np.arange(1, 13).reshape(6, 2)[::-1].reshape(12)[::-1]
+
+dans numpy, axis indique la dimension.
+
+règle de broadcast :
+	on compare un couple de nombre:
+		- s'il sont différents mais il y a un 1 OK
+		- sinon pas OK

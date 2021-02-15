@@ -1,0 +1,4 @@
+EXERICE 3
+
+incorrect dans le cas où toutes les arêtes de poids minimum se situe dans
+entre T1 et T2.
