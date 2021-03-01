@@ -1,0 +1,27 @@
+1/ voir dijkstra_exo1.png
+
+2/ 
+
+________________________________________________________
+
+Dijkstra(G, soource)
+
+a_traiter <- G.sommets()
+distances <- tableau(G.nombre_sommets(), +inf);
+distances[source] <- 0
+parents <- tableau(G.nombre_sommets(), NIL)
+arbre <- GrapheOrienté()
+
+tant que a_traiter.pas_vide() faire
+	u <- ExtraireSommetLePLusProche(a_traiter, distances);
+	si u = NIL alors renvoyer arbre;
+	pour chaque v appartenant à G.voisins(u) faire
+		distances[v] <- min(distances[v], distance[u] + G.poids_arête(u, v));
+		si distance[v] == distance[u] + G.poids_arête(u, v) alors
+			parents[v] = u
+Pour chaque indice appartenant à 0 - G.nombre_sommets() alors
+	arbre.ajouter_arêtes(indice, parents[indice])
+renvoyer arbre
+
+
+________________________________________________________

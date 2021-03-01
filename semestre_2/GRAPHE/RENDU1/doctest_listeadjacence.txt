@@ -1,0 +1,191 @@
+The ListeAdjacence module
+=========================
+
+Using _liste_adjacence
+
+>>> from listeadjacence_incomplet import *
+>>> G = ListeAdjacence()
+>>> G._liste_adjacence
+[]
+
+
+Using ajouter_arete()
+
+>>> g = ListeAdjacence()
+>>> g.ajouter_arete(2, 3);
+>>> g._liste_adjacence
+[[], [], [3], [2]]
+
+
+Using ajouter_aretes()
+
+>>> aretes = [(1, 2), (1, 3), (2, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g._liste_adjacence
+[[], [2, 3], [1, 4], [1], [2]]
+
+
+Using ajouter_sommet()
+
+>>> G = ListeAdjacence()
+>>> G.ajouter_sommet()
+0
+>>> G._liste_adjacence
+[[]]
+>>> G.ajouter_sommet()
+1
+>>> G._liste_adjacence
+[[], []]
+
+
+Using aretes()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.aretes()
+{frozenset({2, 4}), frozenset({1, 3}), frozenset({1, 2})}
+
+
+Using boucles()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.boucles()
+{1, 4}
+
+
+Using contient_arete()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.contient_arete(1, 2)
+True
+>>> g.contient_arete(2, 2)
+False
+
+
+Using contient_sommet()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.contient_sommet(1)
+True
+>>> g.contient_sommet(5)
+False
+
+
+Using degre()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.degre(1)
+2
+
+
+Using nombre_aretes()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.nombre_aretes()
+3
+
+
+Using nombre_boucles()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.nombre_boucles()
+2
+
+
+Using nombre_sommets()
+
+>>> from random import randint
+>>> n = randint(0, 1000)
+>>> ListeAdjacence(n).nombre_sommets() == n
+True
+
+
+Using retirer_arete()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.retirer_arete(1, 1)
+>>> g._liste_adjacence
+[[], [2, 3], [1, 4], [1], [2, 4]]
+>>> g.retirer_arete(1, 1)
+Traceback (most recent call last):
+	...
+ValueError: list.remove(x): x not in list
+
+
+Using retirer_aretes()
+
+>>> a_retirer = [(1, 1), (2, 4)]
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.retirer_aretes(a_retirer)
+>>> g._liste_adjacence
+[[], [2, 3], [1], [1], [4]]
+
+
+Using retirer_sommet()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.retirer_sommet(1)
+>>> g._liste_adjacence
+[[], [], [4], [], [2, 4]]
+
+
+Using retirer_sommets()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.retirer_sommets([2, 3])
+>>> g._liste_adjacence
+[[], [1], [], [], [4]]
+
+
+Using sommets()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.sommets()
+{1, 2, 3, 4}
+
+
+Using sous_graphe_induit()
+
+>>> aretes = [(0, 1), (0, 3), (1, 1), (1, 2), (1, 3), (2, 3), (3, 3)]
+>>> g = ListeAdjacence()
+>>> g.ajouter_aretes(aretes)
+>>> sous_graphe = g.sous_graphe_induit([0, 2, 3])
+>>> sous_graphe.sommets()
+{0, 2, 3}
+>>> sous_graphe.aretes()
+{frozenset({2, 3}), frozenset({0, 3})}
+>>> sous_graphe.boucles()
+{3}
+
+
+Using voisins()
+
+>>> aretes = [(1, 1), (1, 2), (1, 3), (2, 4), (4, 4)]
+>>> g = ListeAdjacence(5)
+>>> g.ajouter_aretes(aretes);
+>>> g.voisins(1)
+{2, 3}

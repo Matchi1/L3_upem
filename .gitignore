@@ -1,13 +1,17 @@
-# C program
+# C file
 
 *.o
 *.out
 *.so
 *.so.*
 
-# Java program
+# Java file
 
 *.class
+
+# Python file
+
+__pycache__/
 
 # Compressed file
 
