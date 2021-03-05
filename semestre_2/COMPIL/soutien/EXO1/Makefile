@@ -1,11 +1,11 @@
 CC = nasm
-LIBS = utils.o little_endian.o
-EXEC = little_endian
+LIBS = utils.o 
+EXEC = exo1
 
-$(EXEC): $(LIBS)
+exo1: $(LIBS) exo1.o
 	gcc -o $@ $^ -nostartfiles -no-pie
 
-$(EXEC).o: $(EXEC).asm
+exo1.o: exo1.asm
 	$(CC) -f elf64 -o $@ $<
 
 utils.o: utils.asm

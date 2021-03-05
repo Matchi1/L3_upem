@@ -1,0 +1,3 @@
+pid = process identifier
+quand on lance la commande fork, il renvoie le pid du processus fils
+on peut connaître le pid du process et celui de son père mais pas du fils

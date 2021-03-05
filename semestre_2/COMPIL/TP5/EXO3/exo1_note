@@ -1,0 +1,3 @@
+Les zones possédant PTR sont les paramètres, ils sont normalement situé dans la
+déclaration de la fonction add (avant le main)
+

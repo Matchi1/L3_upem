@@ -1,0 +1,56 @@
+EXERCICE 1
+
+2/ 
+______________________________________
+
+ParcoursProfondeurOrientéAux(G, v, déjà_visités, parents)
+
+parents <- liste()
+déjà_visités[départ] <- vrai;
+pour chaque v appartenant G.successeurs(départ) faire
+	si - déjà_visités[v] alors
+		parent[v] <- u;
+		résultat.ajouter_arcs(ParcoursProfondeurOrientéRec(G, v, déjà_visités).arcs());
+		
+ParcoursProfondeurOrientéRec(G, v, déjà_visités)
+
+parents <- liste()
+déjà_visités[départ] <- vrai;
+pour chaque v appartenant G.successeurs(départ) faire
+	si - déjà_visités[v] alors
+		parent[v] <- u;
+		résultat.ajouter_arcs(ParcoursProfondeurOrientéRec(G, v, déjà_visités).arcs());
+renvoyer résultat;
+
+______________________________________
+
+3/
+______________________________________
+
+CycleOrienté(G, sommet, statuts)
+
+parents <- liste();
+déjà_visités <- tableau(G.nombre_sommets, FAUX);
+Pour chaque u dans G.sommets faire
+	si - déjà_visités[v] alors
+		CycleOrientéAux(G, sommet, statuts, parents);
+if parents.vide() alors
+	renvoyer NIL;
+Pour chaque v dans G.sommets faire
+	si parents[v] != NIL alors
+		forêt.ajouter_arc(parents[v], u);
+
+
+CycleOrientéAux(G, sommet, statuts, parents)
+
+si statuts[sommet] = “gris” alors renvoyer VRAI ;
+si statuts[sommet] = “noir” alors renvoyer FAUX ;
+statuts[sommet] ← “gris”;
+pour chaque v dans G.successeurs(sommet) faire
+	si CycleOrientéAux (G, v, statuts, parents) alors 
+		parents[v] <- sommet;
+		renvoyer VRAI ;
+statuts[sommet] ← “noir”;
+renvoyer FAUX ;
+______________________________________
+
