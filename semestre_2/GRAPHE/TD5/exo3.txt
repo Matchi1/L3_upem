@@ -1,0 +1,12 @@
+1/ cela permet de rendre le graphe plus compact et souligner le fait que
+le graphe est acyclique (s'il y a des arêtes).
+
+2/ le nombre de composante peut rester le même ou diminuer.
+il ne peut pas augmenter
+
+3/ on pourrait utiliser une liste por contenir les éléments déjà_visité dans
+un cycle, si un des éléments a déjà été visité pendant le parcourt du cycle,
+alors c'est une composante fortement connexe (puis on rajoute ce cycle dans
+une liste).
+
+4/ La complexité 

@@ -1,0 +1,7 @@
+1/ voir train.png
+
+2/ en effet, dans le graphe obtenu, on observe que qu'il y a 3 composantes
+connexes ({1,2}, {5}, {2, 4}), on s'aperçoit que 5 est une composante connexe
+à lui tout seul donc qu'il n'y a aucun moyen de repasser sur ce sommet à
+partir d'autre sommet.
+

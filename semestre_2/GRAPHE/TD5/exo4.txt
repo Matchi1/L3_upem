@@ -1,0 +1,17 @@
+1/ on parcourt les sommets selon leur distance par rapport à s et non selon
+l'ordre d'importance (comme parcours en profondeur), on peut voir ce parcours
+comme parcours en couche.
+
+2/ le graphe est orienté non pondéré, cela signifie que tous les sommets sont
+distincts et qu'il n'y a pas de poids pour laisser un quelconque choix se
+faire. donc l'arbre est unique et il est donc possible de retrouver cet arbre
+par parcours en largeur.
+
+3/ elles ne sont plus valides pour un graphe pondéré
+
+4/ on pourrait utiliser l'exploration en largeur pour calculer un arbre des
+plus court chemin, il faudra effectuer cette exploration sur l'ensemble des
+sommets puis déterminer l'arbre possédant le plus petit poids
+
+5/ on pourrait faire de même pour des poids différents. la complexité serait
+O(|V|^|V| + |A|^|A|) 
