@@ -2,21 +2,11 @@ CC = nasm
 LIBS = utils.o 
 EXEC = exo1
 
-make:
-	make exo1
-	make exo1_1
-
 exo1: $(LIBS) exo1.o
-	gcc -o $@ $^ -nostartfiles -no-pie
-
-exo1_1: exo1_1.o exo1.o
 	gcc -o $@ $^ -nostartfiles -no-pie
 
 exo1.o: exo1.asm
 	$(CC) -f elf64 -o $@ $<
-
-exo1_1.o: exo1_1.c
-	gcc -c $<
 
 utils.o: utils.asm
 	$(CC) -f elf64 -o $@ $<

@@ -1,0 +1,12 @@
+1.	- le plus court chemin : chemin dont la somme des poids des arcs traversés
+	est minimale.
+
+2.	impossible à cause de la valeur négative
+
+3. 	A B E ou A B C E
+
+4. 	A D E F
+
+5. on raisonne par l'absurde
+
+

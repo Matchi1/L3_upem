@@ -1,0 +1,16 @@
+1. voir BellmanFord.ods
+
+2. le chemin est impossible à trouver car on un cycle infini
+et A est déconnecté du graphe
+
+3. d va contenir le poids actuel du chemin actuel faire un sommet
+p va contenir les parents de chaque sommet
+
+4. la dernière boucle permet de vérifier que le chemin existe
+s'il est possible de faire mieux, cela veut dire que le chemin
+n'existe pas.
+
+5. 
+
+6. O(|V|*(|V|+|A|))
+

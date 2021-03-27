@@ -1,0 +1,15 @@
+1. 
+	- Les graphes acycliques
+
+2.
+	- Les graphes hamiltoniens
+
+3. 
+	- les graphes qui ne possèdent pas d'arcs
+
+4.
+	
+5.
+	Cet algorithme détermine d'abord les différentes sources
+	dans le graphe, puis on part de ces sources pour déterminer 
+	les sommets suivants dans l'ordre topologique.

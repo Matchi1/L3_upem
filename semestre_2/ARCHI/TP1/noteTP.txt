@@ -1,0 +1,12 @@
+EXERCICE 1
+
+(1, 4) = vrai
+(1, 6) = faux
+(1, 7) = vrai
+(1, 8) = faux
+(3, 4) = faux
+(3, 5) = vrai
+(3, 7) = vrai
+(3, 8) = vrai
+
+On ne peut rien en déduire, les calculs sont variables.
