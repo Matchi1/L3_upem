@@ -1,0 +1,57 @@
+EXERCICE 1
+
+1. utilisation d'un tableau pour contenir les couleurs (n couleurs au plus).
+couleur vide = -1
+parcours du graphe en largeur
+
+déterminer la plus petite couleur pour un certain sommet
+déterminer les sommets déjà parcouru
+
+-----------------------------------------------------------
+couleur_min (G, sommet, couleur_sommets)
+
+couleur_possible <- tableau(G.nombre_sommets(), VRAI)
+
+Pour chaque v dans G.voisins(sommet) faire
+	Si couleur_sommets[v] != -1 alors
+		couleur_possible[v] = FAUX
+
+Pour i allant de 0 à taille de couleur_possible - 1 faire
+	Si couleur_possible[i] = VRAI alors
+		renvoyer i
+renvoyer NIL
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+coloriage (G)
+
+sommets_couleur <- tableau(G.nombre_sommets(), -1)
+
+Pour s allant de 0 à (G.nombre_sommets() - 1) faire
+	sommets_couleur[s] <- couleur_min(G, s, sommets_couleur)
+
+Renvoyer sommets_couleur
+-----------------------------------------------------------
+
+2. Avec le graphe 0 -> 1 -> 3 -> 2
+5. Avec le graphe 3 -> 2 -> 0 -> 1
+
+EXERCICE 2
+
+1. IL faut vérifier que la distance entre chaque station soit inférieur à k
+kilomètres.
+2. On ne fait le plein seulement s'il est impossible d'atteindre la
+destination avec le réservoir actuel
+
+Entrées : n, k , S
+Sorties : sous séquences de D
+
+actuel_k = k
+sous_séquence = []
+for i in range(len(S) - 1):
+	if S[i+1] - S[i] > k:
+		sous_sequence.append(S[i])
+		actuel_k = k
+	else
+		actuel_k = actuel_k - (S[i+1] - S[i])
+return sous_sequence

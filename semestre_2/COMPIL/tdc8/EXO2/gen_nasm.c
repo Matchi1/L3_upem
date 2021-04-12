@@ -9,44 +9,25 @@
 int size_global = 0, size_local = 0;
 int arr_global[MAX_GLOBAL];
 int arr_local[MAX_LOCAL];
+FILE *in;
 
-void data_section(){
-	FILE* in = fopen(FILE_NAME, "w");
-	fprintf(in, ".section data\n");
+void open_gen(){
+	in = fopen(FILE_NAME, "w");
+}
+
+void close_gen(){
 	fclose(in);
 }
 
-void add_global(int value){
-	arr_global[size_global] = value;
-	size_global++;
+void create_section(char *section){
+	fprintf(in, "section .%s\n", section);
 }
 
-void add_local(int value){
-	arr_local[size_local] = value;
-	size_local++;
-}
-
-void global(){
+void create_global(int STsize){
 	int i;
-
-	FILE* in = fopen(FILE_NAME, "a");
-	fprintf(in, "\ntable dq");
-	for(i = 0; i < size_global - 1; i++){
-		fprintf(in, " %d,", arr_global[i]);
-	}
-	fprintf(in, " %d\n", arr_global[i]);
-	fclose(in);
-}
-
-void local(){
-	int i;
-	FILE* in = fopen(FILE_NAME, "a");
-	fprintf(in, "\tpush rbp\n");
-	fprintf(in, "\tmov rbp, rsp\n");
-	for(i = 0; i < size_local; i++){
-		fprintf(in, "\tpush %d\n", arr_local[i]);
-	}
-	fprintf(in, "\tpop rbp\n");
-	fclose(in);
+	fprintf(in, "table dq");
+	for(i = 0; i < STsize - 1; i++)
+		fprintf(in, " 0,");
+	fprintf(in, " 0\n");
 }
 

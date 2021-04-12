@@ -1,0 +1,17 @@
+>>> from CHAN_MATHIEU_RENDU2_GRAPHE import *
+>>> from dictionnaireadjacence import *
+>>> G = GraphePondere()
+>>> T = Tas()
+>>> list_aretes = [(0, 1, 5), (0, 2, 7), (0, 3, 4), (0, 4, 2), (1, 4, 2), (2, 3, 9), (2, 5, 5), (3, 4, 3), (3, 5, 7), (3, 6, 4), (4, 6, 7), (5, 6, 12)]
+>>> G.ajouter_aretes(list_aretes)
+>>> arbre = acpm_prim(G, 1)
+>>> print(arbre.dictionnaire)
+>>> F = type(G)()
+>>> F.ajouter_aretes(list_aretes)
+>>> list_aretes1 = [(7, 8, 5), (7, 9, 1), (7, 10, 2), (8, 9, 7), (8, 10, 10), (8, 11, 7), (9, 11, 3)]
+>>> F.ajouter_aretes(list_aretes1)
+>>> forets = fcpm_prim(F)
+>>> print(forets.dictionnaire)
+>>> forets = acpm_kruskal(F)
+>>> print(forets.dictionnaire)
+

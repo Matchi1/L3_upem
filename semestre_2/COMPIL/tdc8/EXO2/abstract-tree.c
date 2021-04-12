@@ -8,11 +8,19 @@ extern int lineno;       /* from lexer */
 static const char *StringFromKind[] = {
   "Program",
   "VarDeclList",
+  "FuncDeclList",
+  "FuncDecl",
+  "TypeDeclList",
+  "TypeDecl",
+  "EnTete",
   "IntLiteral",
   "Charliteral",
   "Identifier",
   "StructType",
-  "Type"
+  "Type",
+  "Corps",
+  "TypesVars"
+  
   /* and all other node labels */
   /* The list must coincide with the enum in abstract-tree.h */
   /* To avoid listing them twice, see https://stackoverflow.com/a/10966395 */
@@ -71,7 +79,11 @@ void printTree(Node *node) {
     case IntLiteral: printf(": %d", node->u.integer); break;
     case CharLiteral: printf(": '%c'", node->u.character); break;
     case Identifier: printf(": %s", node->u.identifier); break;
+    case StructType: printf(": %s", node->u.identifier); break;
+    case EnTete: printf(": %s", node->u.identifier); break;
+    case TypeDecl: printf(": %s", node->u.identifier); break;
     case Type: printf(": %s", node->u.identifier); break;
+    case TypesVars: printf(": %s", node->u.identifier); break;
     default: break;
   }
   printf("\n");

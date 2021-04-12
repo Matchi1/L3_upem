@@ -5,6 +5,8 @@ open List;;
 let diagonal c : picture =
     (fun (x, y) -> if x = y then c else background);;
 
+render (diagonal red);;
+
 let square c long : picture =
     (fun (x, y) -> 
         let min = (0 - (long / 2)) and max = (0 + (long / 2))
@@ -13,6 +15,8 @@ let square c long : picture =
             then c
             else background
     );;
+
+render (square red 20);;
 
 let rectangle c width height : picture =
     (fun (x, y) -> 
@@ -24,12 +28,16 @@ let rectangle c width height : picture =
             else background
     );;
 
+render (rectangle red 10 20);;
+
 let disk r c : picture =
     (fun (x, y) ->
         if (x * x + y * y) <= r * r
         then c
         else background
     );;
+
+render (disk 20 red);;
 
 let circle r c : picture =
     (fun (x, y) ->
@@ -41,10 +49,14 @@ let circle r c : picture =
             else background
     );;
 
+render (circle 20 red);;
+
 let move p vect : picture =
     (fun (x, y) ->
         p (x - (fst vect), y - (snd vect))
     );;
+
+render (move (circle 20 red) (w / 2, h / 2));;
 
 let vertical_symetry p : picture =
     (fun (x, y) ->

@@ -5,7 +5,7 @@ int main(void){
 	int i, j, k = 1000;
 
 	for(j = 0; j < 3; j++){
-		double result = 0, result1 = 0;
+		float result = 0, result1 = 0;
 		k = tab[j];
 		for(i = 1; i < k; i++){
 			result += 1./ i;

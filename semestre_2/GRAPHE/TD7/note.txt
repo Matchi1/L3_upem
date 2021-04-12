@@ -1,3 +1,20 @@
 EXERCICE 1
 
-1. 
+EXERCICE 4
+
+1. nouveau flot = a*f
+2. flot = sum(sum(c(u, v))) - sum(sum(c(u, v)))
+donc sum(sum(c(u, v))) - sum(sum())
+
+EXERCICE 5
+ On créer une source qui aura pour successeurs tous les sources précédentes
+ On créer un puit qui aura pour prédécésseurs tous les puits précédents
+ il faut aussi prendre en compte les capacités, les mettre en +inf par exemple.
+
+EXERCICE 6
+
+1. P source, Q puit
+les sommets -> point de contrôle
+coût -> capacité
+
+2.

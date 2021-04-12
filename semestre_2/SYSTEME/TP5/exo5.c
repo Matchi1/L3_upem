@@ -17,18 +17,6 @@ void try(char* name, int retValue){
 	}
 }
 
-void close_fd(int index){
-	int i;
-	for(i = 0; i <= index; i++){
-		if(i == index)
-			try("close", close(proc[i].fd[1]));
-		else {
-			try("close", close(proc[i].fd[0]));
-			try("close", close(proc[i].fd[1]));
-		}
-	}
-}
-
 void write_nb(){
 	char name[4];
 	int i, a, b;
@@ -42,10 +30,17 @@ void write_nb(){
 	}
 }
 
-int main(void){
-	setbuf(stdout, NULL);
+void close_fd(int index){
 	int i;
-	char str[64] = "./";
+	for(i = 0; i < index; i++){
+		try("close", close(proc[i].fd[0]));
+		try("close", close(proc[i].fd[1]));
+	}
+	try("close", close(proc[i].fd[1]));
+}
+
+void create_sub_process(){
+	int i;
 	for(i = 0; proc[i].name != NULL; i++){
 		try("pipe", pipe(proc[i].fd));
 		switch(fork()){
@@ -53,13 +48,23 @@ int main(void){
 				try("fork", -1); break;
 			case 0:
 				try("dup2", dup2(proc[i].fd[0], 0));
-				sprintf(str + 2, "%s", proc[i].name);
 				close_fd(i);
-				try("execlp", execlp(str, str, NULL));
+				try("execl", execl(proc[i].name, proc[i].name, NULL));
 				break;
-			default: break;
+			default: 
+				try("close", proc[i].fd[0]);
+				break;
 		}
 	}
+}
+
+int main(void){
+	setbuf(stdout, NULL);
+	/* création des sous-processus pour les différents calculs */
+	create_sub_process();
+	
+	/* Attend l'entrée de l'utilisateur pour pouvoir diriger 
+	 * le calcul dans le sous-processus correspondant */
 	write_nb();
 	return 0;
 }
