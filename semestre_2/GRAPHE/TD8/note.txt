@@ -43,6 +43,7 @@ kilomètres.
 2. On ne fait le plein seulement s'il est impossible d'atteindre la
 destination avec le réservoir actuel
 
+3.
 Entrées : n, k , S
 Sorties : sous séquences de D
 
@@ -55,3 +56,19 @@ for i in range(len(S) - 1):
 	else
 		actuel_k = actuel_k - (S[i+1] - S[i])
 return sous_sequence
+
+4. raisonnement par l'absurde
+
+
+EXERCICE 4
+
+1. Independent set :
+On sélectionne en priorité les sommets possédant le moins de voisins
+possibles.
+On ajoute les non-voisins de ce sommet dans une liste.
+On parcourt les sommets de cette liste.
+On enlève les sommets qui ont pour voisin un élément de la liste.
+
+Max cut :
+On sélectionne les sommets avec le plus de voisins possibles.
+
