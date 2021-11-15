@@ -1,0 +1,80 @@
+EXERCICE 1
+
+### 1.1 Processus
+Cela permet d'avoir plusieurs programmes qui sont exécution en même temps et
+non pas juste un comme ce fut le cas dans d'anciens systèmes d'exploitation.
+
+### 1.2 Processus
+Il s'agit de l'ordonnanceur (scheduler). Il décide de l'arrangement dans
+lequel les processus vont s'exécuter, en fonction de leur priorité notamment.
+Un processus est actif pendant quelques millièmes de secondes, puis un autre
+prend le relais, donnant l'illusion à l'utilisateur que tous les processus
+sont actifs en même temps.
+
+### 1.3 Processus
+fork : créer un processus qui est une copie exacte (si ce n'est la valeur de
+retour de fork: du processus courant. Ce processus est le fils du processus
+sur lequel a été appelé le fork).
+
+exec : remplace le processus courant par le programme spécifié, sauf si
+l'appel à exec à échouer.
+
+exit : permet de fermer un processus.
+
+wait : attend que le processus change d'état.
+
+### 1.4 Processus
+pipes : permet de communiquer entre 2 processus (entre des processus de la
+même famille, père-fils)
+
+mkfifo : permet la communication entre 2 processus qui n'ont pas forcément de
+relation père-fils
+
+### 1.4 Connaissance générale
+temps réel : impose un délais maximale pour qu'un processus s'exécute.
+ubuntu est best-effort car elle n'impose pas de délais, par exemple quand un
+programme exécute une boucle infinie.
+
+### 1.5 Connaissance générale
+le "changement de contexte" permet de gérer l'exécution des différent processus
+simultanément. En réalité, les processus s'exécute en alternance, il faut donc
+gérer l'alternance d'exécution des processus.
+Le changement de contexte consiste à changer le "processus actif" dans le
+cadre de l'ordonnancement des processus, et concrétement cela consiste à
+sauvegarder l'état des registres dans la table des contextes, puis charger les
+registres depuis table vers les processeurs, ce qui est une opération peu
+couteuse.
+c'est utilisé la création de sous-processus ou la communication entre 2
+processus.
+
+### 1.6 Mémoire
+La mémoire alloué à un processus est censé être seulement lue et modifiée par
+ce processus. ainsi, si un autre processus tente de modifier de la mémoire qui
+n'est pas à lui, c'est problématique.
+
+### 1.7 Mémoire
+c'est une erreur de page introuvable en mémoire. Suspend l'exécution d'un
+processus.
+
+### 1.8 Mémoire
+le système idéal de gestion des pages est un système qui peut prédire
+l'avenir (irréaliste).
+LRU : Least recently used -> remplace les pages utilisées le moins
+récemment.
+
+### 1.9 Entrées-Sorties
+bloquant signifie qu'un programme est mis en pause et attend le changement
+d'état d'un fd.
+
+### 1.10 Entrées-Sorties
+la fonction wait() est bloquante et permet de mettre en pause l'exécution d'un
+programme.
+
+### 1.11 Entrées-Sorties
+dup permet de dupliquer un fd vers un fd libre.
+dup2 permet de dupliquer un fd vers le fd spécifié.
+
+### 1.12
+Un pipe permet une connexion inter-processus. Cette connexion est
+unidirectionnelle. le pipe doit être créer dans un processus père pour pouvoir
+le connecter avec ses processus fils.

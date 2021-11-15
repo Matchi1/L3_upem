@@ -292,7 +292,7 @@ let rec quadtree_insert tree n p =
                                 rectangle_contains_points r3 l,
                                 rectangle_contains_points r4 l
                             )
-                        in Node (aux l1 n r1, aux l2 n r2, aux l3 n r3, aux l4 n r4, rect)
+/bin/bash: q: command not found
             in aux l n r
     | Node (t1, t2, t3, t4, r) ->
             let (r1, r2, r3, r4) = rectangle_split_four r

@@ -1,0 +1,48 @@
+Descriptions à ajouter si besoin
+
+réseau:
+	- getaddrinfo
+	- socket
+	- connect
+	- bind
+	- listen
+	- accept
+
+information sur un fichier:
+	- stat, lstat (ne suit pas les liens)
+		- const char *pathname :
+		- struct stat *stat :
+	- scandir
+		- const char *dirp :
+		- struct dirent ***namelist :
+		- int (*filter)(const struct dirent *) :
+		- int (*compar)(const struct dirent **, const dirent **) :
+	- opendir
+		- const char *name :
+	- readdir
+		- DIR *dirp :
+	- getpwuid
+	- getgrgid
+
+file descriptor:
+	- open
+	- close
+	- write
+	- read
+	- dup / dup2
+
+gestion des signaux:
+	- signal
+	- sigaction
+		- int signum : numéro du signal
+		- const struct sigaction *act : action selon le signal 
+		- struct sigaction *oldact : save the old action
+
+gestion des processus:
+	- fork
+	- exec
+	- wait
+	- select
+	- pipe
+	- getpid (processus)
+	- getppid (père)

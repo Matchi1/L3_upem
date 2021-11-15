@@ -14,3 +14,40 @@ EXERCICE 2
 
 1. const
 2. 
+si j'ai le choix entre k valeurs de pièces, je vais choisir celle qui me donne
+un montant que je peux décomposer en le moins de pièces possibles.
+Et l'obtention de ces sous-décompositions optimales se fait de la même manière
+que pour le problème de départ, d'où la sous-structure optimale.
+
+plus_long_facteur(mot1, mot2):
+
+m = tableau[taille(mot1), taille(mot2)] 
+l_max = 0
+opt(mot1, mot2, m)
+pour i allant de 0 à taille(tableau):
+	pour j allant de 0 à taille(tableau[i]):
+		si tableau[i][j] > l_max:	
+			l_max = tableau[i][j]
+renvoyer l_max
+
+croissant(liste):
+
+l = tableau[taille(liste)]
+i_max = 0
+j_max = 0
+k_max = 0
+
+pour i allant de 1 à taille(l):
+	if liste[i] < liste[i - 1]:
+		l[i] = 1
+	sinon:
+		l[i] = l[i - 1] + 1
+
+pour i allant de 0 à taille(l):
+	if k_max < l[i]: 
+		i_max = i - l[i]
+		j_max = i
+		k_max = l[i]
+
+renvoyer (i_max, j_max)
+	

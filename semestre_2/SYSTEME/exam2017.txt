@@ -1,0 +1,130 @@
+1.1 
+exec effectue un remplacement du processus actuel par la commande entrée
+en argument
+
+1.2 
+execl -> utilise des char*
+execvp -> utilise une liste d'argument
+exemple :
+	- execl("ls", "ls", NULL);
+	- execvp("ls", argv);
+
+1.3 
+un processus exécute une seule commande / programme contrairement à des
+threads qui exécute plusieurs tâches "simultanément". (les threads partagent une
+même mémoire vituelle)
+
+1.4 
+	- mkfifo (entre 2 processus)
+	- pipe (entre processus père-fils)
+
+1.5 
+le multitache préemptif c'est attribuer à chaque tâche un niveau de
+priorité.
+
+1.6 
+ordonnanceur/scheduler permet de gérer l'ordre d'exécution de chaque processus.
+
+1.7 
+défaut de page c'est le fait de chercher une page mémoire dans la RAM qui
+existe dans le disque dur mais qui n'a pas été charger dans la RAM
+
+1.8 
+
+1er algorithme: FIFO
+
+7:7XX
+0:70X
+1:701
+2:201
+0:201
+3:231
+0:230
+4:430
+2:420
+3:423
+0:023
+3:023
+2:023
+1:013
+2:012
+0:012
+1:012
+7:712
+0:702
+1:701
+
+2e algorithme: LRU
+
+7:7XX
+0:70X
+1:701
+2:201
+0:201
+3:203
+0:203
+4:403
+2:402
+3:432
+0:032
+3:032
+2:032
+1:132
+2:132
+0:102
+1:102
+7:107
+0:107
+1:107
+
+1.9
+
+"bloquant" -> 
+	- attente passive pendant l'exécution d'un programme
+	- le programme est mis en attente (attend un signal...)
+exemple : pause(), read(), wait()...
+
+1.10
+
+tubes -> unidirectionnel (avantages : pratique pour les communications entre
+les processus)
+sockets -> 2 sens (avantages : pratique pour envoyer des informations entre 2
+appareils différents)
+
+2.1
+
+int main(void){
+	switch(fork()){
+		case -1:
+			try("fork", -1); break;
+		case 0:
+			sleep(5);
+			printf("je suis le fils : mon pid est %d\n", getpid());
+			break;
+		default:
+			try("wait", wait(NULL));
+			try("write", write(STDOUT_FILENO, "mon fils vient de terminer\n",
+			27));
+	}
+	return 0;
+}
+
+2.2
+
+int main(void){
+	int p[2];
+	try("pipe", pipe(p));
+	switch(fork()){
+		case -1:
+			try("fork", -1); break;
+		case 0:
+			while(1){
+			}
+			break;
+		default:
+			try("wait", wait(NULL));
+			try("write", write(STDOUT_FILENO, "mon fils vient de terminer\n",
+			27));
+	}
+	return 0;
+}

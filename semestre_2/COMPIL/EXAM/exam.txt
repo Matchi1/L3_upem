@@ -1,0 +1,82 @@
+EXERCICE 1
+
+1/ 
+1. int (* length)[512] 
+-> int ((* length)[512]) 
+-> pointeur(tableau(0 ... 511, int))
+
+2. int * (* find_pivot)()
+-> int (* (* find_pivot)())
+-> pointeur(fonction(void, pointeur(int)))
+
+3. float * * (* * chooser)(char, float)
+-> float (* (* ((* (* chooser))(char, float))))
+-> pointeur(fonction())
+-> pointeur(pointeur(fonction(char, float, pointeur(pointeur(float)))))
+
+4. int (* find_median)(* int, * int)
+-> int ((* find_median)(* int, *int))
+-> pointeur(fonction(pointeur(int), pointeur(int), int))
+
+EXERCICE 2
+
+1. 
+attributs : valeur
+N −→ inf10 $			N.valeur := inf10.valeur
+N −→ inf100 $			N.valeur := inf100.valeur
+N −→ inf100 inf10 $		N.valeur := inf100.valeur + inf10.valeur
+inf10 −→ inf4			inf10.valeur := inf4.valeur	
+inf10 −→ I V			inf10.valeur := I.valeur + V.valeur
+inf10 −→ V				inf10.valeur := V.valeur
+inf10 −→ V inf4			inf10.valeur := V.valeur + inf4.valeur
+inf10 −→ IX				...
+inf4 −→ I				...
+inf4 −→ II				...
+
+2. 
+
+EXERCICE 3
+
+%{
+int x1 = 0, y1 = 0;
+int x2 = 0, y2 = 0;
+int direction = 0;
+int colour = 0;
+int penup = 1;
+%}
+
+%union{
+	int value;
+}
+
+%tolen RIGHT LEFT COLOUR NUM PENUP PENDOWN
+
+S : suiteC
+  ;
+SuiteC:
+	suiteC C
+  | C
+  ;
+C:
+	FORWARD NUM { 
+					switch(direction){
+						case 0:
+							y2 += yylval.value; break;
+						case 1:
+							x2 += yylval.value; break;
+						case 2:
+							y2 -= yylval.value; break;
+						default:
+							x2 -= yylval.value; break;
+					}
+					if(!penup)
+						printf("DRAWN %d %d %d %d %d", x1, y1, x2, y2, colour);
+					x1 = x2;
+					y1 = y2;
+				}
+  | RIGHT		{ if(direction == 3) direction = 0; else direction++; }
+  | LEFT		{ if(direction == 0) direction = 3; else direction--; }
+  | COLOUR NUM	{ colour = yylval.value; }
+  | PENUP		{ penup = 1; } 
+  | PENDOWN		{ penup = 0; }
+  ;
